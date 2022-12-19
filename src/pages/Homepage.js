@@ -39,34 +39,34 @@ export default function Homepage() {
                 <h1 style={{fontSize: "40px"}}>
                     Are you ready to sell? 
                 </h1>
-                <Button variant="contained" style={{fontSize: "15px", color: "white", border: "1px solid white", marginTop: "5%", backgroundColor: "rgb(14, 6, 58)"}} onClick={navigateToForm}>Instant Valuation</Button>
+                <Button variant="contained" style={{fontSize: "15px", color: "white", border: "1px solid white", marginTop: "5%", backgroundColor: "rgba(3, 17, 31)"}} onClick={navigateToForm}>Instant Valuation</Button>
                 
             </div>
             <Container >
-                <h1 style={{color: "White", fontSize: "25px", textAlign: "center"}}>
+                <h1 style={{color: "White", fontSize: "25px", textAlign: "center", marginTop: "10px"}}>
                     Convert your Ride into Revenue in just three easy steps
                 </h1>
                 <Grid container spacing={0} style={{marginTop: "15px"}}>
                     <Grid item xs={4} md={4}>
-                        <Card style={{ width:"275px", backgroundColor: "black", justifyContent: "center"}}>
+                        <Card style={{ width:"275px", justifyContent: "center"}}>
                             <CardMedia
                             component="img"
                             image="/images/valuation.png" 
-                            style={{filter: "invert()", width: "150px", justifyContent: "center", marginLeft: "25%"}}
+                            style={{filter: "invert()", width: "120px", justifyContent: "center", marginLeft: "25%"}}
                             />
                             <CardContent>
-                                <h1 style={{fontSize: "25px", textAlign: "left", textAlign: "center"}}>
+                                <h1 style={{fontSize: "25px", textAlign: "center"}}>
                                     Online Valuation
                                 </h1>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={4}>
-                        <Card style={{ width:"300px", backgroundColor: "black", justifyContent: "center"}}>
+                        <Card style={{ width:"300px", justifyContent: "center"}}>
                             <CardMedia
                             component="img"
                             image="/images/caliii.png" 
-                            style={{filter: "invert()", width: "150px", justifyContent: "center", marginLeft: "25%"}}
+                            style={{filter: "invert()", width: "120px", justifyContent: "center", marginLeft: "25%"}}
                             />
                             <CardContent>
                                 <h1 style={{fontSize: "25px", textAlign: "left", textAlign: "center"}}>
@@ -76,11 +76,11 @@ export default function Homepage() {
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={4}>
-                        <Card style={{ width:"275px", backgroundColor: "black", justifyContent: "center"}}>
+                        <Card style={{ width:"275px", justifyContent: "center"}}>
                             <CardMedia
                             component="img"
                             image="/images/car.png" 
-                            style={{filter: "invert()", width: "150px", justifyContent: "center", marginLeft: "25%"}}
+                            style={{filter: "invert()", width: "158px", justifyContent: "center", marginLeft: "25%"}}
                             />
                             <CardContent>
                                 <h1 style={{fontSize: "25px", textAlign: "left", textAlign: "center"}}>
@@ -91,7 +91,7 @@ export default function Homepage() {
                     </Grid>
                 </Grid>
             </Container>
-            <Container style={{backgroundColor: "rgb(14, 6, 58)", padding: "30px", marginTop:"50px", borderRadius: "50px"}}>
+            <Container style={{padding: "30px", marginTop:"50px"}}>
                 <Typography component="div" variant="h6" style={{textAlign: "center"}}>
                     WHY YOU SHOULD NOT BE HESITANT WHEN YOU CHOOSE US?
                 </Typography>
@@ -100,20 +100,20 @@ export default function Homepage() {
                 </Typography>
             <Grid container spacing={0} style={{marginTop: "15px"}}>
                     <Grid item xs={4} md={6}>
-                        <Card sx={{ display: "flex" }} style={{backgroundColor: "transparent"}}>
+                        <Card sx={{ display: "flex" }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
-                            sx={{ width: 100 }}
+                            sx={{ width: 70 }}
                             
                             image="/images/timer.png"
-                            style={{filter: "invert()", height: "90px", marginTop: "2%"}}
+                            style={{filter: "invert()", height: "70px", marginTop: "2%", marginLeft:"2%"}}
                             />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h6">
+                                    <Typography style={{fontSize: "20px"}} variant="body1" gutterBottom>
                                         Quick
                                     </Typography>
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography style={{fontSize: "15px"}} variant="body1" gutterBottom>
                                         We buy your car in no more than than 30 minutes.
                                     </Typography>
                                 </CardContent>
@@ -121,19 +121,19 @@ export default function Homepage() {
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={6}>
-                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "transparent"}}>
+                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
-                            sx={{ width: 100 }}
+                            sx={{ width: 70 }}
                             image="/images/scales.png"
-                            style={{filter: "invert()", height: "90px", marginTop: "2%"}}
+                            style={{filter: "invert()", height: "70px", marginTop: "2%", marginLeft:"2%"}}
                             />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h6">
+                                    <Typography style={{fontSize: "20px"}} variant="body1" gutterBottom>
                                         Fair Price
                                     </Typography>
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography style={{fontSize: "15px"}} variant="body1" gutterBottom>
                                         We will offer you a fairer price than others.
                                     </Typography>
                                 </CardContent>
@@ -141,19 +141,19 @@ export default function Homepage() {
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={6}>
-                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "transparent"}}>
+                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
-                            sx={{ width: 100 }}
+                            sx={{ width: 70 }}
                             image="/images/short-term.png"
-                            style={{filter: "invert()", height: "90px", marginTop: "2%"}}
+                            style={{filter: "invert()", height: "70px", marginTop: "2%", marginLeft:"2%"}}
                             />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h6">
+                                    <Typography style={{fontSize: "20px"}} variant="body1" gutterBottom>
                                         Instant
                                     </Typography>
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography style={{fontSize: "15px"}} variant="body1" gutterBottom>
                                         Get your payment immediately via the method that you prefer cash, bank transfer or cheque
                                     </Typography>
                                 </CardContent>
@@ -161,19 +161,19 @@ export default function Homepage() {
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={6}>
-                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "transparent"}}>
+                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
-                            sx={{ width: 100 }}
+                            sx={{ width: 70 }}
                             image="/images/shield.png"
-                            style={{filter: "invert()", height: "100px", marginTop: "2%"}}
+                            style={{filter: "invert()", height: "70px", marginTop: "2%", marginLeft:"2%"}}
                             />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h6">
+                                    <Typography style={{fontSize: "20px"}} variant="body1" gutterBottom>
                                         Safe
                                     </Typography>
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography style={{fontSize: "15px"}} variant="body1" gutterBottom>
                                         The ownership of your car is transferred swiftly without causing any disruptions
                                     </Typography>
                                 </CardContent>
@@ -181,19 +181,19 @@ export default function Homepage() {
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={6}>
-                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "transparent"}}>
+                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
-                            sx={{ width: 100 }}
+                            sx={{ width: 70 }}
                             image="/images/valuuu.png"
-                            style={{filter: "invert()", height: "100px", marginTop: "2%"}}
+                            style={{filter: "invert()", height: "70px", marginTop: "2%", marginLeft:"2%"}}
                             />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h6">
+                                    <Typography style={{fontSize: "20px"}} variant="body1" gutterBottom>
                                         Valuation
                                     </Typography>
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography style={{fontSize: "15px"}} variant="body1" gutterBottom>
                                         Enjoy a free, instant and perfect online valuation.
                                     </Typography>
                                 </CardContent>
@@ -201,19 +201,19 @@ export default function Homepage() {
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={6}>
-                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "transparent"}}>
+                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
-                            sx={{ width: 100 }}
+                            sx={{ width: 70 }}
                             image="/images/inspection.png"
-                            style={{filter: "invert()", height: "100px", marginTop: "2%"}}
+                            style={{filter: "invert()", height: "70px", marginTop: "2%", marginLeft:"2%"}}
                             />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h6">
+                                    <Typography style={{fontSize: "20px"}} variant="body1" gutterBottom>
                                         Free Inspection
                                     </Typography>
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography style={{fontSize: "15px"}} variant="body1" gutterBottom>
                                         Your car will be inspected freely.
                                     </Typography>
                                 </CardContent>
@@ -221,19 +221,19 @@ export default function Homepage() {
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={6}>
-                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "transparent"}}>
+                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
-                            sx={{ width: 100 }}
+                            sx={{ width: 70 }}
                             image="/images/car-loan.png"
-                            style={{filter: "invert()", height: "100px", marginTop: "2%"}}
+                            style={{filter: "invert()", height: "70px", marginTop: "2%", marginLeft:"2%"}}
                             />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h6">
+                                    <Typography style={{fontSize: "20px"}} variant="body1" gutterBottom>
                                         Mortgage
                                     </Typography>
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography style={{fontSize: "15px"}} variant="body1" gutterBottom>
                                         Your financed auto is not a problem; we will deal with such case smoothly.
                                     </Typography>
                                 </CardContent>
@@ -241,19 +241,19 @@ export default function Homepage() {
                         </Card>
                     </Grid>
                     <Grid item xs={4} md={6}>
-                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "transparent"}}>
+                        <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
-                            sx={{ width: 100 }}
+                            sx={{ width: 70 }}
                             image="/images/agreement.png"
-                            style={{filter: "invert()", height: "100px", marginTop: "2%"}}
+                            style={{filter: "invert()", height: "70px", marginTop: "2%", marginLeft:"2%"}}
                             />
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <CardContent sx={{ flex: '1 0 auto' }}>
-                                    <Typography component="div" variant="h6">
+                                    <Typography style={{fontSize: "20px"}} variant="body1" gutterBottom>
                                         Any Condition
                                     </Typography>
-                                    <Typography variant="caption" display="block" gutterBottom>
+                                    <Typography style={{fontSize: "15px"}} variant="body1" gutterBottom>
                                         Your car is accepted anyway, whether it is brand new, second hand or very old car.
                                     </Typography>
                                 </CardContent>

@@ -7,9 +7,19 @@ import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import Login from './components/Login';
 import Auctions from './pages/Auctions';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   return (
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
     <Router>
     <Routes>
       <Route exact path='/' element={<Homepage/>}/>
@@ -20,8 +30,7 @@ function App() {
       <Route exact path='/auctions' element={<Auctions/>} />
     </Routes>
     </Router>
-    
-
+    </ThemeProvider>
     
   );
 }
