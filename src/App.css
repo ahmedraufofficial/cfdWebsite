@@ -47,7 +47,6 @@
 
 html {
     font-family: 'Nunito', sans-serif;
-    font-size: 22px;
     color: #fff;
 }
 
@@ -95,8 +94,7 @@ input[type="password"],
 button,
 textarea {
   font-family: 'Nunito', sans-serif;
-  font-size: 22px;
-  padding: 0.25rem;
+
   border-radius: 0.5rem;
 }
 
