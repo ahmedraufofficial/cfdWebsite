@@ -8,7 +8,6 @@ import AuctionCard from '../components/AuctionCard';
 
 const Auctions = () => {
   const {auth} = useContext(AuthContext);
-    console.log(auth)
   const [auctions, setAuctions] = useState([])
 
   const fetchAuctions = () => {
