@@ -27,8 +27,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const style = {
     position: 'relative',
-    width: '80%',
-    height: '80%'
+    width: '100%',
+    height: '100%'
   };
   
   const style01 = {
@@ -36,7 +36,8 @@ const style = {
   }
   
   const style02 = {
-    padding: 5
+    padding: 5,
+    fontSize: "20px"
   }
   
   const Websites = [
@@ -253,9 +254,9 @@ export default function Evaluation() {
             <ResponsiveAppBar />
         <Container sx={style}>
           <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={2} style={{marginTop: "3%"}}>
+          <Grid container spacing={1} style={{marginTop: "3%"}}>
           <Grid item xs={6} md={5} >
-            <h4 style={{textAlign: "center"}}>
+            <h4 style={{marginLeft: "2.5%"}}>
                 Appointment Information
             </h4>
           <TextField style={style01} 
@@ -345,7 +346,7 @@ export default function Evaluation() {
                   inputFormat="MM/DD/YYYY"
                   value={value}
                   onChange={handleChange07}
-                  renderInput={(params) => <TextField size="small" InputLabelProps={{style: {fontSize: 20, resize: "5px"}}} {...params}/>}
+                  renderInput={(params) => <TextField size="small" InputLabelProps={{style: {fontSize: 20}}} {...params}/>}
                   />
                   <TimePicker
                   label="Time"
@@ -389,7 +390,7 @@ export default function Evaluation() {
           </TextField>
           </Grid>
           <Grid item xs={6} md={3}>
-            <h4 style={{textAlign: "center"}}>
+            <h4 style={{marginLeft: "1%"}}>
                 Customer Information
             </h4>
           <FormControl variant="standard" style={style02}>
@@ -404,7 +405,7 @@ export default function Evaluation() {
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
-                <AccountCircle />
+                <AccountCircle fontSize='20px'/>
               </InputAdornment>
             }
           />
@@ -420,13 +421,13 @@ export default function Evaluation() {
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
-                <EmailIcon />
+                <EmailIcon fontSize='20px'/>
               </InputAdornment>
             }
           />
           </FormControl>
-          <FormControl variant="standard" style={style01}>
-          <InputLabel htmlFor="Contact_Number" style={style01}>
+          <FormControl variant="standard" style={style02}>
+          <InputLabel htmlFor="Contact_Number" style={style02}>
             Contact Number
           </InputLabel>
           <Input
@@ -436,7 +437,7 @@ export default function Evaluation() {
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
-                <PhoneIcon />
+                <PhoneIcon fontSize='20px'/>
               </InputAdornment>
             }
           />
@@ -459,7 +460,7 @@ export default function Evaluation() {
           </TextField>
           </Grid>
           <Grid item xs={6} md={4}>
-            <h4 style={{textAlign: "center"}}>
+            <h4 style={{marginLeft: "2.5%"}}>
                 Car Valuation Details
             </h4>
           <TextField style={style01}
@@ -569,7 +570,7 @@ export default function Evaluation() {
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
-                <AttachMoneyIcon />
+                <AttachMoneyIcon fontSize='20px'/>
               </InputAdornment>
             }
           />
