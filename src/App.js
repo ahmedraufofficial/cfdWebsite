@@ -6,7 +6,7 @@ import Evaluation from './pages/Evaluation';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import Login from './components/Login';
-
+import Auctions from './pages/Auctions';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <Route exact path='/about-us' element={<AboutUs/>}/>
       <Route exact path='/contact-us' element={<ContactUs/>}/>
       <Route exact path='/login' element={<Login/>}/>
+      <Route exact path='/auctions' element={<Auctions/>} />
     </Routes>
     </Router>
     
