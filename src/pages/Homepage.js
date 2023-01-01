@@ -35,7 +35,7 @@ export default function Homepage() {
     return (
         <ThemeProvider theme={darkTheme}>
             <ResponsiveAppBar />
-            <div style={{ backgroundImage: 'url("/images/vroom.jpg")', backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundSize: "cover", display: "grid", placeItems: "center", width:"60%", alignContent: "center", margin: "auto", paddingLeft:"5%", paddingTop: "5%", paddingBottom: "6%", paddingRight: "5%"}}>
+            <div className="shadow" style={{ backgroundImage: 'url("/images/vroom.jpg")', backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundSize: "cover", display: "grid", placeItems: "center", width:"60%", alignContent: "center", margin: "auto", paddingLeft:"5%", paddingTop: "5%", paddingBottom: "6%", paddingRight: "5%"}}>
                 <h1 style={{fontSize: "40px"}}>
                     Are you ready to sell? 
                 </h1>
@@ -43,12 +43,12 @@ export default function Homepage() {
                 
             </div>
             <Container >
-                <h1 style={{color: "White", fontSize: "25px", textAlign: "center", marginTop: "10px"}}>
+                <h1 style={{color: "White", fontSize: "25px", textAlign: "center", marginTop: 25}}>
                     Convert your Ride into Revenue in just three easy steps
                 </h1>
-                <Grid container spacing={0} style={{marginTop: "15px"}}>
-                    <Grid item xs={4} md={4}>
-                        <Card style={{ width:"275px", justifyContent: "center"}}>
+                <div style={{display: 'flex', justifyContent: 'space-between', marginTop: 25}}>
+                    
+                        <Card style={{ width:"275px", paddingTop: 15, justifyContent: "center"}}>
                             <CardMedia
                             component="img"
                             image="/images/valuation.png" 
@@ -60,9 +60,8 @@ export default function Homepage() {
                                 </h1>
                             </CardContent>
                         </Card>
-                    </Grid>
-                    <Grid item xs={4} md={4}>
-                        <Card style={{ width:"300px", justifyContent: "center"}}>
+               
+                        <Card style={{ width:"300px", paddingTop: 15, justifyContent: "center"}}>
                             <CardMedia
                             component="img"
                             image="/images/caliii.png" 
@@ -74,9 +73,9 @@ export default function Homepage() {
                                 </h1>
                             </CardContent>
                         </Card>
-                    </Grid>
-                    <Grid item xs={4} md={4}>
-                        <Card style={{ width:"275px", justifyContent: "center"}}>
+               
+        
+                        <Card style={{ width:"275px", paddingTop: 15, justifyContent: "center"}}>
                             <CardMedia
                             component="img"
                             image="/images/car.png" 
@@ -88,8 +87,8 @@ export default function Homepage() {
                                 </h1>
                             </CardContent>
                         </Card>
-                    </Grid>
-                </Grid>
+              
+                </div>
             </Container>
             <Container style={{padding: "30px", marginTop:"50px"}}>
                 <Typography component="div" variant="h6" style={{textAlign: "center"}}>

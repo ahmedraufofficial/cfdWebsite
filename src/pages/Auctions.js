@@ -41,7 +41,9 @@ const Auctions = () => {
     <ResponsiveAppBar />
     <Container >
       <Grid>
-        <Typography>Auctions</Typography>
+        <h4 style={{margin: "2.5%"}}>
+            Auctions
+        </h4>
       </Grid>
       <Grid>
         {
