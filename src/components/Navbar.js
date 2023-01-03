@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const pages = ['car-valuation', 'buy-now', 'auctions', 'about-us', 'contact-us'];
+const pages = ['car-valuation', 'car-sale','car-listings', 'buy-now', 'auctions', 'about-us', 'contact-us'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {

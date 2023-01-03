@@ -1,19 +1,13 @@
 import { Box, Button } from '@mui/material';
 import { React } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from "../context/AuthProvider";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Container, Grid, ListItem } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import ResponsiveAppBar from '../components/Navbar';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import { useTheme } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
 import Footer from '../components/footer';
 
 
@@ -32,6 +26,9 @@ export default function Homepage() {
         navigate('/car-valuation');
     };
 
+      const navigateToForm01 = () => {
+        navigate('/car-sale');
+    };
     return (
         <ThemeProvider theme={darkTheme}>
             <ResponsiveAppBar />
@@ -39,7 +36,8 @@ export default function Homepage() {
                 <h1 style={{fontSize: "40px"}}>
                     Are you ready to sell? 
                 </h1>
-                <Button variant="contained" style={{fontSize: "15px", color: "white", border: "1px solid white", marginTop: "5%", backgroundColor: "rgba(3, 17, 31)"}} onClick={navigateToForm}>Instant Valuation</Button>
+                <Button variant="contained" style={{fontSize: "15px", color: "white", border: "1px solid white", marginTop: "5%", backgroundColor: "orange", width: "200px"}} onClick={navigateToForm}>Instant Valuation</Button>
+                <Button variant="contained" style={{fontSize: "15px", color: "white", border: "1px solid white", marginTop: "1%", backgroundColor: "orange", width: "200px"}} onClick={navigateToForm01}>Instant Sale</Button>
                 
             </div>
             <Container >
@@ -68,7 +66,7 @@ export default function Homepage() {
                             style={{filter: "invert()", width: "120px", justifyContent: "center", marginLeft: "25%"}}
                             />
                             <CardContent>
-                                <h1 style={{fontSize: "25px", textAlign: "left", textAlign: "center"}}>
+                                <h1 style={{fontSize: "25px", textAlign: "center"}}>
                                     Make an Appointment
                                 </h1>
                             </CardContent>
@@ -82,7 +80,7 @@ export default function Homepage() {
                             style={{filter: "invert()", width: "158px", justifyContent: "center", marginLeft: "25%"}}
                             />
                             <CardContent>
-                                <h1 style={{fontSize: "25px", textAlign: "left", textAlign: "center"}}>
+                                <h1 style={{fontSize: "25px", textAlign: "center"}}>
                                     Online Valuation
                                 </h1>
                             </CardContent>

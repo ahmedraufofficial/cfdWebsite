@@ -9,6 +9,8 @@ import Login from './components/Login';
 import Auctions from './pages/Auctions';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import CarSale from './pages/CarSale';
+import CarListing from './pages/CarListings';
 
 const darkTheme = createTheme({
   palette: {
@@ -28,6 +30,8 @@ function App() {
       <Route exact path='/contact-us' element={<ContactUs/>}/>
       <Route exact path='/login' element={<Login/>}/>
       <Route exact path='/auctions' element={<Auctions/>} />
+      <Route exact path='/car-sale' element={<CarSale/>} />
+      <Route exact path='/car-listings' element={<CarListing/>} />
     </Routes>
     </Router>
     </ThemeProvider>

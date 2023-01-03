@@ -1,26 +1,18 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import {Container} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import {InputLabel, Input, TextField, Box, Paper, Grid, MenuItem} from '@mui/material';
-import Stack from '@mui/material/Stack';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import {InputLabel, Input, TextField, Paper, Grid, MenuItem} from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import { useFormik } from 'formik';
+import { useFormik} from 'formik';
 import Footer from '../components/footer';
 import ResponsiveAppBar from '../components/Navbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import { useState } from 'react';
 
 const style = {
     position: 'relative',
@@ -36,84 +28,6 @@ const style = {
     padding: 5,
     fontSize: "20px"
   }
-  
-  const Websites = [
-      {
-        value: 'carfairdeal',
-        label: 'carfairdeal',
-      },
-      {
-        value: 'dubizzle',
-        label: 'dubizzle',
-      },
-    ];
-  
-    const Users = [
-      {
-        value: 'Sattar Sahab',
-        label: 'Sattar Sahab',
-      },
-      {
-        value: 'John Cena',
-        label: 'John Cena',
-      },
-    ];
-  
-    const selloptions = [
-      {
-        value: 'A1 Option',
-        label: 'A2 Option',
-      },
-      {
-        value: 'A2 Option',
-        label: 'A2 OPtion',
-      },
-    ];
-  
-    const Locations = [
-      {
-        value: 'LA',
-        label: 'LA',
-      },
-      {
-        value: 'LV',
-        label: 'LV',
-      },
-    ];
-  
-    const valstatuses = [
-      {
-        value: 'No Idea 01',
-        label: 'No Idea 01',
-      },
-      {
-        value: 'No Idea 02',
-        label: 'No Idea 02',
-      },
-    ];
-  
-    const Heard_From_Uss = [
-      {
-        value: 'Website',
-        label: 'Website',
-      },
-      {
-        value: 'Brochure',
-        label: 'Brochure',
-      },
-    ];
-  
-    const staffsources = [
-      {
-        value: 'Source 01',
-        label: 'Source 01',
-      },
-      {
-        value: 'Source 02',
-        label: 'Source 02',
-      },
-    ];
-  
     const contactLocations =[
       {
         value: 'LA',
@@ -193,7 +107,7 @@ const style = {
 
 
 
-export default function Evaluation() {
+export default function CarSale() {
 
     const darkTheme = createTheme({
         palette: {
@@ -206,17 +120,6 @@ export default function Evaluation() {
 
     const formik = useFormik({
         initialValues: {
-          email: '',
-          password: '',
-          Website: '',
-          User: '',
-          Sell_Option: '',
-          Location: '',
-          Valuation_Status: '',
-          Heard_From_Us: '',
-          Staff_Lead_Source: '',
-          Appointment_Date: new Date(),
-          Appointment_Time: new Date(),
           Customer_Information: {},
           Car_Valuation_Details: {}
         },
@@ -234,174 +137,23 @@ export default function Evaluation() {
           //alert(JSON.stringify(values, null, 2));
         },
       });
-      const [toggle, settoggle] = useState(false);
-      const handleChange09 = event => {
-        settoggle(current => !current);
-      };
 
-      const [selectedTime, setTime] = useState(new Date());
-      const [selectedDate, handleDateChange] = useState(new Date());
-
-      const handleTimeChange = (val) => {
-        const hours = new Date(val).getHours();
-        const minutes = new Date(val).getMinutes();
-        const seconds = new Date(val).getSeconds();
-        console.log(`${hours}:${minutes}:${seconds}`);
-        setTime(val);
-      };
-
-
-    const [value1, setValue1] = useState('');
-    const [value2, setValue2] = useState('');
-    const [value3, setValue3] = useState('');
-    const [result, setResult] = useState('');
-
-    function handleChange1(event) {
-      setValue1(event.target.value);
-      updateResult();
-    }
-
-    function handleChange2(event) {
-      setValue2(event.target.value);
-      updateResult();
-    }
-
-    function handleChange3(event) {
-      setValue3(event.target.value);
-      updateResult();
-    }
-
-    function updateResult() {
-      if (value1 && value2)  {
-          setResult(`Wassup`);
-      }
-    }
+  
+    const Item = styled(Paper)(({ theme }) => ({
+      backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+      ...theme.typography.body2,
+      padding: theme.spacing(1),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    }));
     
       return (
         <ThemeProvider theme={darkTheme}>
             <ResponsiveAppBar />
         <Container sx={style}>
           <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={1} style={{marginTop: "3%"}}>
-          <Grid item xs={6} md={5} >
-            <h4 style={{marginLeft: "2.5%"}}>
-                Appointment Information
-            </h4>
-          <TextField style={style01} 
-            sx={{ m: 1, minWidth: 150 }} size="small" 
-            id="Website"
-            name="Website"
-            select
-            label="Website" 
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Website}
-            onChange={formik.handleChange}
-          >
-            {Websites.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150, fontSize: "2px" }} size="small"
-            id="User"
-            name="User"
-            select
-            label="User"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.User}
-            onChange={formik.handleChange}
-          >
-            {Users.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Sell_Option"
-            name="Sell_Option"
-            select
-            label="Sell Option"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Sell_Option}
-            onChange={formik.handleChange}
-          >
-            {selloptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150}} size="small"
-            id="Location"
-            name="Location"
-            select
-            label="Location"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Location}
-            onChange={formik.handleChange}
-          >
-            {Locations.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 170 }} size="small"
-            id="Valuation_Status"
-            name="Valuation_Status"
-            select
-            label="Valuation Status"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Valuation_Status}
-            onChange={formik.handleChange}
-          >
-            {valstatuses.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 170 }} size="small"
-            id="Heard_From_Us"
-            name="Heard_From_Us"
-            select
-            label="Hear Us From"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Heard_From_Us}
-            onChange={formik.handleChange}
-          >
-            {Heard_From_Uss.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 170 }} size="small"
-            id="Staff_Lead_Source"
-            name="Staff_Lead_Source"
-            select
-            label="Staff Lead Source"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Staff_Lead_Source}
-            onChange={formik.handleChange}
-          >
-            {staffsources.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          </Grid>
-          <Grid item xs={6} md={3}>
+          <Grid container spacing={0} style={{marginTop: "3%"}}>
+          <Grid item xs={6} md={3} style={{margin: "auto"}}>
             <h4 style={{marginLeft: "1%"}}>
                 Customer Information
             </h4>
@@ -471,9 +223,9 @@ export default function Evaluation() {
             ))}
           </TextField>
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={6} md={4} style={{margin: "auto"}}>
             <h4 style={{marginLeft: "2.5%"}}>
-                Car Valuation Details
+                Car Details
             </h4>
           <TextField style={style01}
             sx={{ m: 1, minWidth: 150 }} size="small"
@@ -482,8 +234,8 @@ export default function Evaluation() {
             select
             label="Model Year"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={value1}
-            onChange={handleChange1}
+            value={formik.values.Customer_Information.Model_Year}
+            onChange={formik.handleChange}
           >
             {Model_Years.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -498,8 +250,8 @@ export default function Evaluation() {
             select
             label="Make"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={value2}
-            onChange={handleChange2}
+            value={formik.values.Customer_Information.Make}
+            onChange={formik.handleChange}
           >
             {makes.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -530,8 +282,8 @@ export default function Evaluation() {
             select
             label="Model Name"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={value3}
-            onChange={handleChange3}
+            value={formik.values.Customer_Information.Model_Name}
+            onChange={formik.handleChange}
           >
             {Model_Names.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -573,12 +325,12 @@ export default function Evaluation() {
           </TextField>
           <FormControl variant="standard" style={style02}>
           <InputLabel htmlFor="Evaluation_Options" style={style02}>
-            Evaluation Amount
+            Price
           </InputLabel>
           <Input
             id="Customer_Information.Evaluation_Options"
             name="Customer_Information.Evaluation_Options"
-            value={result}
+            value={formik.values.Customer_Information.Evaluation_Options}
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
@@ -589,34 +341,7 @@ export default function Evaluation() {
           </FormControl>
           </Grid>
           <Grid item md={12} style={{textAlign: "center"}}>
-            <FormGroup style={{textAlign: "center"}}>
-              <FormControlLabel control={
-              <Switch defaultValue={false} onChange={handleChange09} color="warning" />} label="Book an Appointment" />
-              {toggle && (
-                <Box>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <Stack spacing={3}>
-                      <DesktopDatePicker
-                      label="Select Date"
-                      inputFormat="MM/DD/YYYY"
-                      width="250px"
-                      value={selectedDate}
-                      onChange={(date) => handleDateChange(date)}
-                      minDate={new Date()}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                    <TimePicker
-                      label="Select Time"
-                      value={selectedTime}
-                      onChange={handleTimeChange}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                  </Stack>
-                </LocalizationProvider>
-                </Box>
-              )}
-            </FormGroup>
-            <Button sx={{ m: 1, minWidth: 200, backgroundColor: "orange" }} color="primary" variant="contained" type="submit">
+            <Button sx={{ m: 1, minWidth: 200 }} style={{backgroundColor: "orange"}} variant="contained" type="submit">
               Submit
             </Button>
           </Grid>

@@ -131,7 +131,7 @@ export default function ContactUs() {
                         onChange={formik.handleChange}
                     >
                     </TextField>
-                    <Button color="primary" variant="contained" type="submit" size='small'>SUBMIT</Button>
+                    <Button style={{backgroundColor: 'orange'}} variant="contained" type="submit" size='small'>SUBMIT</Button>
                 </Container>
           
                 </Grid>

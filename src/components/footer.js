@@ -1,20 +1,7 @@
-import { Box, Button } from '@mui/material';
 import { React } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from "../context/AuthProvider";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Container, Grid, ListItem } from '@mui/material';
-import ResponsiveAppBar from '../components/Navbar';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import { useTheme } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import { textAlign } from '@mui/system';
+import { Grid } from '@mui/material';
+
 
 
 
