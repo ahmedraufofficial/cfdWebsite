@@ -165,3 +165,22 @@ label {
 h5, h6, h4 {
   color: white;
 }
+
+.orange-box {
+  width: 20%;
+}
+
+
+@media (max-width: 600px) {
+  .orange-container {
+    flex-direction: column;
+  }
+
+  .orange-box {
+    width: 100%;
+  }
+
+  .orange-logo {
+    margin: auto !important;
+  }
+}

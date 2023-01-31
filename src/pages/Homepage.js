@@ -10,8 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Footer from '../components/footer';
 import { toast } from 'react-toastify';
-
-
+import '../App.css';
 
 export default function Homepage() {
     const darkTheme = createTheme({
@@ -48,13 +47,14 @@ export default function Homepage() {
                 <h2 style={{color: "White", fontSize: "25px", textAlign: "center", marginTop: 25}}>
                     Convert your Ride into Revenue in just three easy steps
                 </h2>
-                <div style={{display: 'flex', justifyContent: 'space-around', marginTop: 25}}>
+                <div className='orange-container' style={{display: 'flex', justifyContent: 'space-around', marginTop: 25}}>
                     
-                        <Card style={{ width:"20%", paddingTop: 15, justifyContent: "center", backgroundColor: "#ff8b3d"}}>
+                        <Card className='orange-box' style={{ paddingTop: 15, justifyContent: "center", backgroundColor: "#ff8b3d"}}>
                             <CardMedia
-                            component="img"
-                            image="/images/valuation.png" 
-                            style={{filter: "invert()", width: "100px", justifyContent: "center", marginLeft: "30%"}}
+                                component="img"
+                                image="/images/valuation.png" 
+                                style={{filter: "invert()", width: "100px", justifyContent: "center", marginLeft: "30%"}}
+                                className='orange-logo'
                             />
                             <CardContent>
                                 <h1 style={{fontSize: "25px", textAlign: "center", color: 'white'}}>
@@ -63,11 +63,12 @@ export default function Homepage() {
                             </CardContent>
                         </Card>
                
-                        <Card style={{ width:"20%", paddingTop: 15, justifyContent: "center", backgroundColor: "#ff8b3d"}}>
+                        <Card className='orange-box' style={{ paddingTop: 15, justifyContent: "center", backgroundColor: "#ff8b3d"}}>
                             <CardMedia
                             component="img"
                             image="/images/caliii.png" 
                             style={{filter: "invert()", width: "100px", justifyContent: "center", marginLeft: "33%"}}
+                            className='orange-logo'
                             />
                             <CardContent>
                                 <h1 style={{fontSize: "25px", textAlign: "center", color: 'white'}}>
@@ -77,11 +78,12 @@ export default function Homepage() {
                         </Card>
                
         
-                        <Card style={{ width:"20%", paddingTop: 15, justifyContent: "center", backgroundColor: "#ff8b3d"}}>
+                        <Card className='orange-box' style={{ paddingTop: 15, justifyContent: "center", backgroundColor: "#ff8b3d"}}>
                             <CardMedia
                             component="img"
                             image="/images/car.png" 
                             style={{filter: "invert()", width: "138px", justifyContent: "center", marginLeft: "22%"}}
+                            className='orange-logo'
                             />
                             <CardContent>
                                 <h1 style={{fontSize: "25px", textAlign: "center", color: 'white'}}>
@@ -90,14 +92,43 @@ export default function Homepage() {
                             </CardContent>
                         </Card>
               
-                        <Card style={{ width:"20%", paddingTop: 15, justifyContent: "center", backgroundColor: "#ff8b3d"}} onClick={()=> {
-                        toast('Landline: 02 444 7979')
-                        toast('Mobile: 050 512 1412')
+                        <Card className='orange-box' style={{ paddingTop: 15, justifyContent: "center", backgroundColor: "#ff8b3d"}} onClick={()=> {
+                        toast.info('Landline: 02 444 7979', {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                            })
+                        toast.info('Mobile: 050 512 1412', {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                            })
+                        toast.success(<a href="https://wa.me/00971505977759" sx={{color: 'green'}}>Click to Chat on WhatsApp</a>, {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                            })
                         }}>
                             <CardMedia
                             component="img"
                             image="/images/telephone.png" 
                             style={{filter: "invert()", width: "100px", justifyContent: "center", marginLeft: "28%"}}
+                            className='orange-logo'
                             />
                             <CardContent>
                                 <h1 style={{fontSize: "25px", textAlign: "center", color: 'white'}}>
@@ -116,7 +147,7 @@ export default function Homepage() {
                     Choose us and enjoy the ultimate goals of selling your car.
                 </Typography>
             <Grid container spacing={0} style={{marginTop: "15px"}}>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ display: "flex" }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
@@ -137,7 +168,7 @@ export default function Homepage() {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
@@ -157,7 +188,7 @@ export default function Homepage() {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
@@ -177,7 +208,7 @@ export default function Homepage() {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
@@ -197,7 +228,7 @@ export default function Homepage() {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
@@ -217,7 +248,7 @@ export default function Homepage() {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
@@ -237,7 +268,7 @@ export default function Homepage() {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
@@ -257,7 +288,7 @@ export default function Homepage() {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid item xs={4} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Card sx={{ display: 'flex' }} style={{backgroundColor: "rgba(3, 17, 31)"}}>
                             <CardMedia
                             component="img"
