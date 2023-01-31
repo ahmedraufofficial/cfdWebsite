@@ -19,6 +19,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 import Carousel from 'react-img-carousel';
+import Footer from '../components/footer';
 
 require('react-img-carousel/lib/carousel.css');
 
