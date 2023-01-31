@@ -4,9 +4,11 @@ import ResponsiveAppBar from '../components/Navbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import ListingCard from '../components/ListingCard';
+import { useContext } from 'react';
+import {AuthContext} from '../context/AuthProvider';
 import { Grid } from '@mui/material';
 
-export default function CarListing() {
+export default function MyListings() {
 
   const darkTheme = createTheme({
       palette: {
@@ -18,9 +20,11 @@ export default function CarListing() {
   });
 
   const [cars, setCars] = useState([])
+  const {userInfo} = useContext(AuthContext);
+
 
   const fetchData = () => {
-    fetch(`http://localhost:5000/listings`)
+    fetch(`http://localhost:5000/listings/all/${userInfo?.email}`)
       .then(response => {
         return response.json()
       })
@@ -28,28 +32,25 @@ export default function CarListing() {
         setCars(data.data)
     })
   }
-  
+
 
     useEffect(()=>{
-      fetchData();
-    }, [])
+        if (userInfo) {
+            fetchData();
+        }
+    }, [userInfo])
 
 
       return (
         <ThemeProvider theme={darkTheme}>
             <ResponsiveAppBar />
             <Grid minHeight={'80vh'}>
-            <Grid container marginTop={"3%"}>
-            <h2>
-              Car Listing
-            </h2>
-          </Grid>
-              {
-                cars && cars.map((x) => {
-                  return <ListingCard type={'all'} data={x}/>
+            {
+                cars && cars?.map((x) => {
+                  return <ListingCard type={'self'} data={x}/>
                 })
               }
-              </Grid>
+            </Grid>
             <Footer />
         </ThemeProvider>
       );

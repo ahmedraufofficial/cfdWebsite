@@ -5,27 +5,20 @@ const calcTimeLeft = t => {
 
   const left = t - new Date().getTime();
   if (left < 0) return 0;
-
+  
   return left;
 };
 
 export default function AuctionTimer (endTime, auction) {
   const [end, setEndTime] = useState(endTime);
   const [timeLeft, setTimeLeft] = useState(() => calcTimeLeft(end));
-/* 
-  const fetchNegotiations = () => {
-    fetch(`${process.env.REACT_APP_API}/prenegotiations`)
-  }
- */
   useEffect(() => {
     setTimeLeft(calcTimeLeft(end));
 
     const timer = setInterval(() => {
       const targetLeft = calcTimeLeft(end);
       setTimeLeft(targetLeft);
-      //console.log(targetLeft)
       if (targetLeft === 0) {
-        //fetchNegotiations();
         clearInterval(timer);
       }
     }, 1000);

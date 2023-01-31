@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import {Container} from '@mui/material';
+import {Container, Typography} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import {InputLabel, Input, TextField, Box, Paper, Grid, MenuItem} from '@mui/material';
 import Stack from '@mui/material/Stack';
@@ -20,7 +20,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router'
 
 const style = {
     position: 'relative',
@@ -34,7 +36,8 @@ const style = {
   
   const style02 = {
     padding: 5,
-    fontSize: "20px"
+    fontSize: "20px",
+    width: 250
   }
   
   const Websites = [
@@ -98,8 +101,8 @@ const style = {
         label: 'Website',
       },
       {
-        value: 'Brochure',
-        label: 'Brochure',
+        value: 'Google',
+        label: 'Google',
       },
     ];
   
@@ -127,24 +130,84 @@ const style = {
   
     const Model_Years =[
       {
-        value: '2020',
-        label: '2020',
+        value: '2002',
+        label: '2002',
+      },
+      {
+        value: '2003',
+        label: '2003',
+      },
+      {
+        value: '2004',
+        label: '2004',
+      },
+      {
+        value: '2005',
+        label: '2005',
+      },
+      {
+        value: '2006',
+        label: '2006',
+      },
+      {
+        value: '2007',
+        label: '2007',
+      },
+      {
+        value: '2008',
+        label: '2008',
+      },
+      {
+        value: '2009',
+        label: '2009',
+      },     {
+        value: '2010',
+        label: '2010',
+      },     {
+        value: '2011',
+        label: '2011',
+      },     {
+        value: '2012',
+        label: '2012',
+      },     {
+        value: '2013',
+        label: '2013',
+      },     {
+        value: '2014',
+        label: '2014',
       },
       {
         value: '2015',
         label: '2015',
       },
-    ];
-  
-    const makes =[
       {
-        value: 'Option01',
-        label: 'Option01',
+        value: '2016',
+        label: '2016',
       },
       {
-        value: 'Option02',
-        label: 'Option02',
+        value: '2017',
+        label: '2017',
       },
+      {
+        value: '2018',
+        label: '2018',
+      },
+      {
+        value: '2019',
+        label: '2019',
+      },
+      {
+        value: '2020',
+        label: '2020',
+      },
+      {
+        value: '2021',
+        label: '2021',
+      },
+      {
+        value: '2022',
+        label: '2022',
+      }
     ];
   
     const Global_Model_Names =[
@@ -158,79 +221,93 @@ const style = {
       },
     ];
   
-    const Model_Names =[
-      {
-        value: 'Option01',
-        label: 'Option01',
-      },
-      {
-        value: 'Option02',
-        label: 'Option02',
-      },
-    ];
-  
     const Car_Optionslist =[
       {
-        value: 'Option01',
-        label: 'Option01',
+        value: 'Full',
+        label: 'Full',
       },
       {
-        value: 'Option02',
-        label: 'Option02',
+        value: 'Mid',
+        label: 'Mid',
+      },
+      {
+        value: 'Trim',
+        label: 'Trim',
       },
     ];
   
-    const mileages =[
+    const specs =[
       {
-        value: 'Option01',
-        label: 'Option01',
+        value: 'GCC',
+        label: 'GCC',
       },
       {
-        value: 'Option02',
-        label: 'Option02',
+        value: 'American',
+        label: 'American',
       },
     ];
 
 
 
 export default function Evaluation() {
-
+    const navigate = useNavigate()
     const darkTheme = createTheme({
         palette: {
-          mode: 'dark',
+          mode: 'light',
           primary: {
-            main: '#1976d2',
+            main: '#ff8b3d',
           },
         },
       });
 
     const formik = useFormik({
         initialValues: {
-          email: '',
-          password: '',
-          Website: '',
-          User: '',
-          Sell_Option: '',
-          Location: '',
-          Valuation_Status: '',
           Heard_From_Us: '',
-          Staff_Lead_Source: '',
           Appointment_Date: new Date(),
           Appointment_Time: new Date(),
           Customer_Information: {},
           Car_Valuation_Details: {}
         },
         onSubmit: (values) => {
-          async function add() {
-              const response = await fetch(`https://e7f5-2001-8f8-1623-5e91-c99e-f35a-c239-24a5.in.ngrok.io/add/evaulation`, {
+          async function add(x) {
+              const response = await fetch(`http://localhost:5000/add/evaluation`, {
                   method: 'POST',
                   headers: {'Content-Type': 'application/json'},
-                  body:values
+                  body: JSON.stringify({x: x})
               })
               const data = await response.json()
-              alert(data)  
+              alert("Successfully Added") 
+              navigate(0);  
           }
-          add();
+
+          async function add_appointment(x) {
+            const response = await fetch(`http://localhost:5000/add/appointment`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({x: x})
+            })
+            const data = await response.json()
+            alert("Succesfully Added")   
+            navigate(0);
+        }
+
+          const data = values;
+          if (!data.Car_Valuation_Details) {
+            data.Car_Valuation_Details = {}
+          }
+          data.Car_Valuation_Details.Make = value2
+          data.Car_Valuation_Details.Model_Year = value1
+          data.Car_Valuation_Details.Global_Model_Name = value4
+          data.Car_Valuation_Details.Model_Name = value3
+          data.Car_Valuation_Details.Regional_Specs = value5
+          data.Car_Valuation_Details.Evaluation_Option = JSON.stringify(result)
+          if (!toggle) {
+            delete data.Appointment_Date
+            delete data.Appointment_Time
+            add(data);
+          } else {
+            add_appointment(data)
+          }
           //alert(JSON.stringify(values, null, 2));
         },
       });
@@ -254,155 +331,150 @@ export default function Evaluation() {
     const [value1, setValue1] = useState('');
     const [value2, setValue2] = useState('');
     const [value3, setValue3] = useState('');
+    const [value4, setValue4] = useState('');
+    const [value5, setValue5] = useState('');
     const [result, setResult] = useState('');
+    const [makes, setMakes] = useState([]);
+    const [trims, setTrims] = useState([]);
+    const [Model_Names, setModel_Names] = useState([]);
 
     function handleChange1(event) {
       setValue1(event.target.value);
-      updateResult();
     }
 
     function handleChange2(event) {
       setValue2(event.target.value);
-      updateResult();
+      getModels(event.target.value);
     }
 
     function handleChange3(event) {
       setValue3(event.target.value);
-      updateResult();
+      getTrim(value1, value2, event.target.value)
+    }
+
+    function handleChange4(event) {
+      setValue4(event.target.value);
+    }
+
+    function handleChange5(event) {
+      setValue5(event.target.value);
     }
 
     function updateResult() {
-      if (value1 && value2)  {
-          setResult(`Wassup`);
+      console.log(value1, value2, value3, value5)
+      if (value1 && value2 && value3 && value5)  {
+          fetchEstimate(value2, value3, value1, value5)
+      }
+    }
+
+    const getMakes = async () => {
+      const makesRequest = await fetch('https://car-api2.p.rapidapi.com/api/makes?direction=asc&sort=id', {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': 'bc0999e258mshcf4317dd12e51e3p170dc4jsn618b97c551a7',
+          'X-RapidAPI-Host': 'car-api2.p.rapidapi.com'
+        }
+      })
+      const makesJson = await makesRequest.json()
+      const makesArray = makesJson.data
+      setMakes(makesArray.map((x) => {
+        return {
+          value: x.name,
+          label: x.name
+        }
+      }))
+    }
+
+    const fetchEstimate = (make, model, year, specs) => {
+      if (specs) {
+        fetch(`http://localhost:5000/dbzestimate/${make}/${model}/${year}/${specs.toLowerCase()}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          if (data.estimate) {
+            var price = data.estimate
+            setResult(parseInt(price));
+          } else {
+            fetch(`http://localhost:5000/estimate/${make}/${model}/${year}`)
+            .then(response => {
+              return response.json()
+            })
+            .then(data => {
+              var price = data.estimate
+              setResult(parseInt(price) * 3.68);
+            })
+          }
+
+        })
+      }
+  }
+
+    const getModels = async (x) => {
+      const modelsRequest = await fetch(`https://car-api2.p.rapidapi.com/api/models?make=${x}&sort=id&direction=asc&year=2020&verbose=yes`, {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': 'bc0999e258mshcf4317dd12e51e3p170dc4jsn618b97c551a7',
+          'X-RapidAPI-Host': 'car-api2.p.rapidapi.com'
+        }
+      })
+      const modelsJson = await modelsRequest.json()
+      const modelsArray = modelsJson.data
+      if (x == "Nissan") {
+        modelsArray.push({name: "Patrol"})
+      }
+      setModel_Names(modelsArray.map((x) => {
+        return {
+          value: x.name,
+          label: x.name
+        }
+      }))
+    }
+
+    const getTrim = async (year, make, model) => {
+      if (model == "Patrol") {
+        var patrolList = ["Basic", "GL", "LE", "LE PI", "LE PJ", "LE PK", "LE PL2", "LE PL4", "LE Platinum", "LE Platinum + FES", "Nismo", "Safari", "Safari AT", "Safari KA", "Safari KC", "Safari MT", "Safari SR", "SE", "SE P2", "SE P3", "SE P3L", "SE P4", "SE P5", "SE Platinum", "SE T3", "Super Safari", "VVIP", "XE"]
+        setTrims(patrolList.map((x) => {
+          return {
+            value: x,
+            label: x
+          }
+        }))
+      } else {
+        fetch(`http://localhost:5000/trim/${make}/${model}/${year}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setTrims(data.trim.map((x) => {
+            return {
+              value: x,
+              label: x
+            }
+          }))
+        })
       }
     }
     
+    useEffect(()=>{
+      getMakes();
+      updateResult();
+    }, [value1, value2, value3, value5])
+
       return (
         <ThemeProvider theme={darkTheme}>
             <ResponsiveAppBar />
         <Container sx={style}>
-          <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={1} style={{marginTop: "3%"}}>
-          <Grid item xs={6} md={5} >
-            <h4 style={{marginLeft: "2.5%"}}>
-                Appointment Information
-            </h4>
-          <TextField style={style01} 
-            sx={{ m: 1, minWidth: 150 }} size="small" 
-            id="Website"
-            name="Website"
-            select
-            label="Website" 
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Website}
-            onChange={formik.handleChange}
-          >
-            {Websites.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150, fontSize: "2px" }} size="small"
-            id="User"
-            name="User"
-            select
-            label="User"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.User}
-            onChange={formik.handleChange}
-          >
-            {Users.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Sell_Option"
-            name="Sell_Option"
-            select
-            label="Sell Option"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Sell_Option}
-            onChange={formik.handleChange}
-          >
-            {selloptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150}} size="small"
-            id="Location"
-            name="Location"
-            select
-            label="Location"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Location}
-            onChange={formik.handleChange}
-          >
-            {Locations.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 170 }} size="small"
-            id="Valuation_Status"
-            name="Valuation_Status"
-            select
-            label="Valuation Status"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Valuation_Status}
-            onChange={formik.handleChange}
-          >
-            {valstatuses.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 170 }} size="small"
-            id="Heard_From_Us"
-            name="Heard_From_Us"
-            select
-            label="Hear Us From"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Heard_From_Us}
-            onChange={formik.handleChange}
-          >
-            {Heard_From_Uss.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 170 }} size="small"
-            id="Staff_Lead_Source"
-            name="Staff_Lead_Source"
-            select
-            label="Staff Lead Source"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Staff_Lead_Source}
-            onChange={formik.handleChange}
-          >
-            {staffsources.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
+          <Grid container marginTop={"3%"}>
+            <h2>
+              Evaluation
+            </h2>
           </Grid>
-          <Grid item xs={6} md={3}>
-            <h4 style={{marginLeft: "1%"}}>
+          <form onSubmit={formik.handleSubmit}>
+          <Grid minHeight={'80vh'} container spacing={1} marginTop={"3%"}>
+
+          <Grid item xs={6} md={4}>
+            <h4 style={{marginLeft: "1%", color: 'black'}}>
                 Customer Information
             </h4>
           <FormControl variant="standard" style={style02}>
@@ -455,7 +527,7 @@ export default function Evaluation() {
           />
           </FormControl>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 170 }} size="small"
+            sx={{ m: 1, width: 150 }} size="small"
             id="Customer_Information.Customer_Location"
             name="Customer_Information.Customer_Location"
             select
@@ -472,13 +544,13 @@ export default function Evaluation() {
           </TextField>
           </Grid>
           <Grid item xs={6} md={4}>
-            <h4 style={{marginLeft: "2.5%"}}>
+            <h4 style={{marginLeft: "2.5%", color: 'black'}}>
                 Car Valuation Details
             </h4>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Model_Year"
-            name="Customer_Information.Model_Year"
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Car_Valuation_Details.Model_Year"
+            name="Car_Valuation_Details.Model_Year"
             select
             label="Model Year"
             InputLabelProps={{style: {fontSize: 15}}}
@@ -492,9 +564,9 @@ export default function Evaluation() {
             ))}
           </TextField>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Make"
-            name="Customer_Information.Make"
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Car_Valuation_Details.Make"
+            name="Car_Valuation_Details.Make"
             select
             label="Make"
             InputLabelProps={{style: {fontSize: 15}}}
@@ -508,25 +580,25 @@ export default function Evaluation() {
             ))}
           </TextField>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Global_Model_Name"
-            name="Customer_Information.Global_Model_Name"
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Car_Valuation_Details.Global_Model_Name"
+            name="Car_Valuation_Details.Global_Model_Name"
             select
-            label="Global Model"
+            label="Trim/ Global Model"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Global_Model_Name}
-            onChange={formik.handleChange}
+            value={value4}
+            onChange={handleChange4}
           >
-            {Global_Model_Names.map((option) => (
+            {trims.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
           </TextField>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Model_Name"
-            name="Customer_Information.Model_Name"
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Car_Valuation_Details.Model_Name"
+            name="Car_Valuation_Details.Model_Name"
             select
             label="Model Name"
             InputLabelProps={{style: {fontSize: 15}}}
@@ -540,13 +612,13 @@ export default function Evaluation() {
             ))}
           </TextField>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Car_Options"
-            name="Customer_Information.Car_Options"
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Car_Valuation_Details.Car_Options"
+            name="Car_Valuation_Details.Car_Options"
             select
-            label=" Car Options"
+            label="Car Options"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Car_Options}
+            value={formik.values.Car_Valuation_Details.Car_Options}
             onChange={formik.handleChange}
           >
             {Car_Optionslist.map((option) => (
@@ -556,40 +628,77 @@ export default function Evaluation() {
             ))}
           </TextField>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Mileage"
-            name="Customer_Information.Mileage"
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Car_Valuation_Details.Regional_Specs"
+            name="Car_Valuation_Details.Regional_Specs"
             select
-            label="Mileage"
+            label="Regional Specs"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Mileage}
-            onChange={formik.handleChange}
+            value={value5}
+            onChange={handleChange5}
           >
-            {mileages.map((option) => (
+            {specs.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
           </TextField>
+          
           <FormControl variant="standard" style={style02}>
-          <InputLabel htmlFor="Evaluation_Options" style={style02}>
+          <InputLabel htmlFor="Mileage" style={style02}>
+            Mileage
+          </InputLabel>
+          <Input
+          id="Car_Valuation_Details.Mileage"
+          name="Car_Valuation_Details.Mileage"
+          value={formik.values.Car_Valuation_Details.Mileage}
+            onChange={formik.handleChange}
+            startAdornment={
+              <InputAdornment position="start">
+                <Typography>KM</Typography>
+              </InputAdornment>
+            }
+          />
+          </FormControl>
+
+          <FormControl variant="standard" style={style02}>
+          <InputLabel htmlFor="Evaluation_Option" style={style02}>
             Evaluation Amount
           </InputLabel>
           <Input
-            id="Customer_Information.Evaluation_Options"
-            name="Customer_Information.Evaluation_Options"
+            id="Car_Valuation_Details.Evaluation_Option"
+            name="Car_Valuation_Details.Evaluation_Option"
             value={result}
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
-                <AttachMoneyIcon fontSize='20px'/>
+                <Typography>AED</Typography>
               </InputAdornment>
             }
           />
           </FormControl>
           </Grid>
-          <Grid item md={12} style={{textAlign: "center"}}>
-            <FormGroup style={{textAlign: "center"}}>
+          <Grid item xs={6} md={4} >
+            <h4 style={{marginLeft: "2.5%", color: 'black'}}>
+                Appointment Information
+            </h4>
+          <TextField style={style01}
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Heard_Us_From"
+            name="Heard_Us_From"
+            select
+            label="Heard Us From"
+            InputLabelProps={{style: {fontSize: 15}}}
+            value={formik.values.Heard_Us_From}
+            onChange={formik.handleChange}
+          >
+            {Heard_From_Uss.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <FormGroup style={{textAlign: "center"}}>
               <FormControlLabel control={
               <Switch defaultValue={false} onChange={handleChange09} color="warning" />} label="Book an Appointment" />
               {toggle && (
@@ -616,7 +725,10 @@ export default function Evaluation() {
                 </Box>
               )}
             </FormGroup>
-            <Button sx={{ m: 1, minWidth: 200, backgroundColor: "orange" }} color="primary" variant="contained" type="submit">
+          </Grid>
+          <Grid item md={12} style={{textAlign: "center"}}>
+
+            <Button sx={{ m: 1, minWidth: 200, backgroundColor: "#ff8b3d" }} color="primary" variant="contained" type="submit">
               Submit
             </Button>
           </Grid>

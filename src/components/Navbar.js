@@ -14,8 +14,11 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import {AuthContext} from '../context/AuthProvider';
+import { useEffect, useContext } from 'react';
 
-const pages = ['car-valuation', 'car-sale','car-listings', 'buy-now', 'auctions', 'about-us', 'contact-us'];
+const pages = ['car-valuation', 'car-sale','car-listings', 'auctions', 'about-us', 'contact-us'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -48,7 +51,29 @@ function ResponsiveAppBar() {
       },
     },
   });
-  
+
+    const {userInfo} = useContext(AuthContext);
+
+
+
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  useEffect(() => {
+    if (!userInfo) {
+        setAuth(false)
+    } else {
+        setAuth(true)
+    }
+}, [auth])
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -136,6 +161,37 @@ function ResponsiveAppBar() {
               </Button></Link>
             ))}
           </Box>
+          {auth && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <Link href={'/my-listings'}><MenuItem>My Listings</MenuItem></Link>
+              </Menu>
+            </div>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

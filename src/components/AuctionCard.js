@@ -24,21 +24,25 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { toast } from 'react-toastify';
+import { Stack } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const AuctionCard = ({data}) => {
 
     const {userInfo} = useContext(AuthContext);
     
     const [auction, setAuction] = useState(data)
-    const [bid, setBid] = useState(null);
+    const [image, setImage] = useState("")
+    const [bid, setBid] = useState("");
     
     const getAuction = async () => {
-        fetch(`http://localhost:5000/auction/${auction?._id}`)
+        fetch(`http://localhost:5000/auction/${data?._id}`)
         .then(response => {
             return response.json()
         })
-        .then(data => {
-            setAuction(data.response)
+        .then(values => {
+            setAuction(values.response)
+            setImage(values.response.Images[0])
         })
     }
 
@@ -50,7 +54,7 @@ const AuctionCard = ({data}) => {
     }, [auction]);
 
     const startingTime = moment(auction?.Auction_Start_Date).format("YYYY-MM-DD")+"T"+auction?.Auction_Start_Time+":00"
-    const endTime = new Date(startingTime).getTime() + 60000 * parseInt(auction.Total_Bidding_Duration || 10); 
+    const endTime = new Date(startingTime).getTime() + 60000 * parseInt(auction?.Total_Bidding_Duration || 10); 
     const [timeLeft, setEndTime] = AuctionTimer(endTime, auction);
 
     const minutes = Math.floor(timeLeft / 60000) % 60;
@@ -62,7 +66,7 @@ const AuctionCard = ({data}) => {
     }
 
     return (
-    <Card sx={{ display: 'flex', justifyContent: 'space-between' }}>
+    <Card sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2em' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography style={{marginTop: 10, fontSize: 15}}>{auction?.Vehicle_Title}</Typography>
@@ -71,23 +75,35 @@ const AuctionCard = ({data}) => {
           </Typography>
           <Typography style={{marginTop: 10, fontSize: 15, color: 'green'}}>{`Current Bid: ${auction?.Current_Bid} ${auction?.Currency}`}</Typography>
           <Typography style={{marginTop: 10, fontSize: 15}}>
-          { auction.Status === 'Pre-Negotiation' ? <Typography sx={{color: "green", fontSize: 15}}><TimelapseIcon color='success' fontSize="small"/>Active</Typography> : null }
+          { auction?.Status === 'Pre-Negotiation' ? <Typography sx={{color: "green", fontSize: 15}}><TimelapseIcon color='success' fontSize="small"/>Active</Typography> : null }
           </Typography>
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 2, pb: 1 }}>
-        { auction.Status === 'Pre-Negotiation' ? 
+        { parseInt(minutes) === 0 && parseInt(seconds) === 0 ? 
+            <Typography style={{fontSize: 12, color: "red"}}>
+                Auction Completed
+            </Typography>:
             <Typography style={{fontSize: 12}}>
                 Time Left: 
                 <Typography style={{fontSize: 12, color: "white"}}> {String(hours).length > 1 ? hours: `0${hours}`} : {String(minutes).length > 1 ? minutes: `0${minutes}`} : {String(seconds).length > 1 ? seconds : `0${seconds}`}</Typography>
-            </Typography>  :
-            <Typography style={{fontSize: 12, color: "red"}}>
-                Auction Completed
-            </Typography>
+            </Typography>  
+
         }
         </Box>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', pl: 2, pb: 1 }}>
-      {auction.Status === 'Pre-Negotiation' ? <>
+      {parseInt(minutes) === 0 && parseInt(seconds) === 0 ?      
+      <Link to={`/auctions/${auction?._id}`}>
+               <Button variant="outlined">
+               View
+                </Button>
+            </Link>:
+        <Stack>
+            <Link to={`/auctions/${auction?._id}`}>
+            <Button variant='outlined'>
+               View
+                </Button>
+            </Link>
         <TextField
             value={bid}
             onChange={handleTextFieldChange}
@@ -96,7 +112,7 @@ const AuctionCard = ({data}) => {
             label="Custom Bid"
             variant="outlined" 
         />
-        <Button variant="contained" sx={{marginLeft: 1}} onClick={() => {
+        <Button variant="contained" sx={{marginTop: 1}} onClick={() => {
              !(parseInt(bid) > 0) ? 
                 toast(<Alert severity="error">
                 Re-check Bid. Bid value is incorrect or 0
@@ -163,14 +179,18 @@ const AuctionCard = ({data}) => {
               }}>
                 BID
               </Button> 
-              </>:null}
+              </Stack>
+              }
       </Box>
+    
       <CardMedia
-        component="img"
-        sx={{ width: 151 }}
-        image="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=1200"
-        alt="Live from space album cover"
-      />
+      component="img"
+      sx={{ width: 151 }}
+      image={"http://localhost:5000/images/"+ image}
+      alt="Live from space album cover"
+    />
+    
+
     </Card>
       );
 }

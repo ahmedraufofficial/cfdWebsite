@@ -1,5 +1,8 @@
+import { Grid } from '@mui/material';
+import { Container } from '@mui/system';
 import { useRef, useState, useEffect, useContext } from 'react';
 import {AuthContext} from '../context/AuthProvider';
+import { Button } from '@mui/material';
 
 //import axios from './api/axios';
 const LOGIN_URL = '/auth';
@@ -15,41 +18,37 @@ const Login = () => {
     const [success, setSuccess] = useState(false);
 
     const {isLoading, login} = useContext(AuthContext);
-    useEffect(() => {
-        userRef.current.focus();
-    }, [])
+
+    const {userInfo} = useContext(AuthContext);
 
     useEffect(() => {
-        setErrMsg('');
-    }, [email, password])
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        //setAuth({ email, username: "Ahmed", password })
-        setEmail('')
-        setPassword('')
-        setSuccess(true);
-    }
+        if (!userInfo) {
+            setSuccess(false)
+        } else {
+            setSuccess(true)
+        }
+    }, [success])
 
     return (
-        <>
+        <Container>
             {success ? (
-                <section>
+                <Grid>
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
                         <a href="/">Go to Home</a>
                     </p>
-                </section>
+                </Grid>
             ) : (
-                <section>
+                <Grid>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Sign In</h1>
                     <form onSubmit={(e)=>{
                         e.preventDefault();
                         login(email, password)
+                        setSuccess(true)
                     }}>
-                        <label htmlFor="email">Username:</label>
+                        <label htmlFor="email">Email:</label>
                         <input
                             type="text"
                             id="email"
@@ -58,17 +57,29 @@ const Login = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
                             required
+                            style={{
+                                border: '1px solid white',
+                                borderRadius: '0px',
+                                height: 25,
+                                marginTop: 10
+                            }}
                         />
 
-                        <label htmlFor="password">Password:</label>
+                        <label style={{marginTop: 10}} htmlFor="password">Password:</label>
                         <input
                             type="password"
                             id="password"
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
                             required
+                            style={{
+                                border: '1px solid white',
+                                borderRadius: '0px',
+                                height: 25,
+                                marginTop: 10
+                            }}
                         />
-                        <button>Sign In</button>
+                        <button variant="contained" style={{fontSize: "15px", color: "white", border: "1px solid white", marginTop: "5%", backgroundColor: "#ff8b3d", width: "200px"}}>Sign In</button>
                     </form>
                     <p>
                         Need an Account?<br />
@@ -77,9 +88,9 @@ const Login = () => {
                             <a href="#">Sign Up</a>
                         </span>
                     </p>
-                </section>
+                </Grid>
             )}
-        </>
+        </Container>
     )
 }
 

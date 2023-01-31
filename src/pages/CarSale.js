@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import {Container} from '@mui/material';
+import {Container, Typography} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import {InputLabel, Input, TextField, Paper, Grid, MenuItem} from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -13,6 +13,7 @@ import { useFormik} from 'formik';
 import Footer from '../components/footer';
 import ResponsiveAppBar from '../components/Navbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useState, useEffect } from 'react';
 
 const style = {
     position: 'relative',
@@ -26,7 +27,8 @@ const style = {
   
   const style02 = {
     padding: 5,
-    fontSize: "20px"
+    fontSize: "20px",
+    width: 250
   }
     const contactLocations =[
       {
@@ -50,29 +52,8 @@ const style = {
       },
     ];
   
-    const makes =[
-      {
-        value: 'Option01',
-        label: 'Option01',
-      },
-      {
-        value: 'Option02',
-        label: 'Option02',
-      },
-    ];
   
     const Global_Model_Names =[
-      {
-        value: 'Option01',
-        label: 'Option01',
-      },
-      {
-        value: 'Option02',
-        label: 'Option02',
-      },
-    ];
-  
-    const Model_Names =[
       {
         value: 'Option01',
         label: 'Option01',
@@ -105,35 +86,34 @@ const style = {
       },
     ];
 
-
-
 export default function CarSale() {
 
     const darkTheme = createTheme({
         palette: {
-          mode: 'dark',
+          mode: 'light',
           primary: {
-            main: '#1976d2',
+            main: '#ff8b3d',
           },
         },
       });
 
     const formik = useFormik({
         initialValues: {
-          Customer_Information: {},
-          Car_Valuation_Details: {}
         },
-        onSubmit: (values) => {
-          async function add() {
-              const response = await fetch(`https://e7f5-2001-8f8-1623-5e91-c99e-f35a-c239-24a5.in.ngrok.io/add/evaulation`, {
+        onSubmit: (values, {resetForm}) => {
+          async function add(values) {
+              const response = await fetch(`http://localhost:5000/add/listing`, {
                   method: 'POST',
                   headers: {'Content-Type': 'application/json'},
-                  body:values
+                  body: JSON.stringify(values)
               })
               const data = await response.json()
-              alert(data)  
+              data ? alert('Succesfully submitted') : alert('Something went wrong');
+              resetForm();
           }
-          add();
+          values.Make = value2
+          values.Model_Name = value3
+          add(values);
           //alert(JSON.stringify(values, null, 2));
         },
       });
@@ -146,15 +126,74 @@ export default function CarSale() {
       textAlign: 'center',
       color: theme.palette.text.secondary,
     }));
-    
+
+    const [value2, setValue2] = useState('');
+    const [value3, setValue3] = useState('');
+    const [makes, setMakes] = useState([]);
+    const [Model_Names, setModel_Names] = useState([]);
+
+    function handleChange2(event) {
+      setValue2(event.target.value);
+      getModels(event.target.value);
+    }
+
+    function handleChange3(event) {
+      setValue3(event.target.value);
+    }
+
+    const getMakes = async () => {
+      const makesRequest = await fetch('https://car-api2.p.rapidapi.com/api/makes?direction=asc&sort=id', {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': 'bc0999e258mshcf4317dd12e51e3p170dc4jsn618b97c551a7',
+          'X-RapidAPI-Host': 'car-api2.p.rapidapi.com'
+        }
+      })
+      const makesJson = await makesRequest.json()
+      const makesArray = makesJson.data
+      setMakes(makesArray.map((x) => {
+        return {
+          value: x.name,
+          label: x.name
+        }
+      }))
+    }
+
+    const getModels = async (x) => {
+      const modelsRequest = await fetch(`https://car-api2.p.rapidapi.com/api/models?make=${x}&sort=id&direction=asc&year=2020&verbose=yes`, {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': 'bc0999e258mshcf4317dd12e51e3p170dc4jsn618b97c551a7',
+          'X-RapidAPI-Host': 'car-api2.p.rapidapi.com'
+        }
+      })
+      const modelsJson = await modelsRequest.json()
+      const modelsArray = modelsJson.data
+      setModel_Names(modelsArray.map((x) => {
+        return {
+          value: x.name,
+          label: x.name
+        }
+      }))
+    }
+
+    useEffect(()=>{
+      getMakes();
+    }, [ value2, value3])
+
       return (
         <ThemeProvider theme={darkTheme}>
             <ResponsiveAppBar />
         <Container sx={style}>
+          <Grid container marginTop={"3%"}>
+            <h2>
+              Add Car Advertisement
+            </h2>
+          </Grid>
           <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={0} style={{marginTop: "3%"}}>
-          <Grid item xs={6} md={3} style={{margin: "auto"}}>
-            <h4 style={{marginLeft: "1%"}}>
+          <Grid minHeight={'80vh'} container spacing={2} style={{marginTop: "3%"}}>
+          <Grid item xs={6} md={5}>
+            <h4 style={{marginLeft: "1%", color: 'black'}}>
                 Customer Information
             </h4>
           <FormControl variant="standard" style={style02}>
@@ -162,10 +201,10 @@ export default function CarSale() {
             First Name
           </InputLabel>
           <Input
-            id="Customer_Information.Contact_Name"
-            name="Customer_Information.Contact_Name"
+            id="Contact_Name"
+            name="Contact_Name"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Contact_Name}
+            value={formik.values.Contact_Name}
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
@@ -179,9 +218,9 @@ export default function CarSale() {
             Email
           </InputLabel>
           <Input
-            id="Customer_Information.Email"
-            name="Customer_Information.Email"
-            value={formik.values.Customer_Information.Email}
+            id="Email"
+            name="Email"
+            value={formik.values.Email}
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
@@ -195,9 +234,9 @@ export default function CarSale() {
             Contact Number
           </InputLabel>
           <Input
-            id="Customer_Information.Contact_Number"
-            name="Customer_Information.Contact_Number"
-            value={formik.values.Customer_Information.Contact_Number}
+            id="Contact_Number"
+            name="Contact_Number"
+            value={formik.values.Contact_Number}
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
@@ -206,35 +245,22 @@ export default function CarSale() {
             }
           />
           </FormControl>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 170 }} size="small"
-            id="Customer_Information.Customer_Location"
-            name="Customer_Information.Customer_Location"
-            select
-            label="Contact Location"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Customer_Location}
-            onChange={formik.handleChange}
-          >
-            {contactLocations.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
           </Grid>
-          <Grid item xs={6} md={4} style={{margin: "auto"}}>
-            <h4 style={{marginLeft: "2.5%"}}>
+          <Grid md={2}>
+
+          </Grid>
+          <Grid item xs={6} md={5}>
+            <h4 style={{marginLeft: "2.5%", color: 'black'}}>
                 Car Details
             </h4>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Model_Year"
-            name="Customer_Information.Model_Year"
+            <TextField style={style01}
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Model_Year"
+            name="Model_Year"
             select
             label="Model Year"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Model_Year}
+            value={formik.values.Model_Year}
             onChange={formik.handleChange}
           >
             {Model_Years.map((option) => (
@@ -244,14 +270,14 @@ export default function CarSale() {
             ))}
           </TextField>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Make"
-            name="Customer_Information.Make"
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Make"
+            name="Make"
             select
             label="Make"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Make}
-            onChange={formik.handleChange}
+            value={value2}
+            onChange={handleChange2}
           >
             {makes.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -260,30 +286,14 @@ export default function CarSale() {
             ))}
           </TextField>
           <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Global_Model_Name"
-            name="Customer_Information.Global_Model_Name"
-            select
-            label="Global Model"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Global_Model_Name}
-            onChange={formik.handleChange}
-          >
-            {Global_Model_Names.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Model_Name"
-            name="Customer_Information.Model_Name"
+            sx={{ m: 1, width: 150 }} size="small"
+            id="Model_Name"
+            name="Model_Name"
             select
             label="Model Name"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Model_Name}
-            onChange={formik.handleChange}
+            value={value3}
+            onChange={handleChange3}
           >
             {Model_Names.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -293,12 +303,12 @@ export default function CarSale() {
           </TextField>
           <TextField style={style01}
             sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Car_Options"
-            name="Customer_Information.Car_Options"
+            id="Car_Options"
+            name="Car_Options"
             select
             label=" Car Options"
             InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Car_Options}
+            value={formik.values.Car_Options}
             onChange={formik.handleChange}
           >
             {Car_Optionslist.map((option) => (
@@ -307,41 +317,41 @@ export default function CarSale() {
               </MenuItem>
             ))}
           </TextField>
-          <TextField style={style01}
-            sx={{ m: 1, minWidth: 150 }} size="small"
-            id="Customer_Information.Mileage"
-            name="Customer_Information.Mileage"
-            select
-            label="Mileage"
-            InputLabelProps={{style: {fontSize: 15}}}
-            value={formik.values.Customer_Information.Mileage}
-            onChange={formik.handleChange}
-          >
-            {mileages.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
           <FormControl variant="standard" style={style02}>
-          <InputLabel htmlFor="Evaluation_Options" style={style02}>
-            Price
+          <InputLabel htmlFor="Price" style={style02}>
+            Mileage
           </InputLabel>
           <Input
-            id="Customer_Information.Evaluation_Options"
-            name="Customer_Information.Evaluation_Options"
-            value={formik.values.Customer_Information.Evaluation_Options}
+            id="Mileage"
+            name="Mileage"
+            value={formik.values.Mileage}
             onChange={formik.handleChange}
             startAdornment={
               <InputAdornment position="start">
-                <AttachMoneyIcon fontSize='20px'/>
+                <Typography>KM</Typography>
+              </InputAdornment>
+            }
+          />
+          </FormControl>
+          <FormControl variant="standard" style={style02}>
+          <InputLabel htmlFor="Price" style={style02}>
+            Price
+          </InputLabel>
+          <Input
+            id="Price"
+            name="Price"
+            value={formik.values.Price}
+            onChange={formik.handleChange}
+            startAdornment={
+              <InputAdornment position="start">
+                <Typography>AED</Typography>
               </InputAdornment>
             }
           />
           </FormControl>
           </Grid>
           <Grid item md={12} style={{textAlign: "center"}}>
-            <Button sx={{ m: 1, minWidth: 200 }} style={{backgroundColor: "orange"}} variant="contained" type="submit">
+            <Button sx={{minWidth: 200 }} style={{backgroundColor: "#ff8b3d"}} variant="contained" type="submit">
               Submit
             </Button>
           </Grid>

@@ -69,9 +69,9 @@ export default function ContactUs() {
       });
     const darkTheme = createTheme({
         palette: {
-          mode: 'dark',
+          mode: 'light',
           primary: {
-            main: '#1976d2',
+            main: '#ff8b3d',
           },
         },
       });
@@ -80,19 +80,27 @@ export default function ContactUs() {
         <ThemeProvider theme={darkTheme}>
             <ResponsiveAppBar />
             <Container style={{marginTop: "35px"}} >
+            <Grid container marginTop={"3%"}>
+            <h2>
+              Contact Us
+            </h2>
+          </Grid>
             <Grid container spacing={2}>
                 <Grid item xs={6} style={{textAlign: "center", marginTop: "10%", marginBottom: "10%", padding: "5%"}}>
-                    <h4>
+                    <h4 style={{ color: 'black'}}>
                     We’re here to answer any questions you may have. Reach out to us and we’ll respond as soon as we can.
                     </h4>
-                    <h5 style={{marginTop: "45px"}}>
+                    <h5 style={{marginTop: "45px", color: 'black'}}>
                     For any inquiries please contact
                     </h5>
-                    <h5>
-                    info@carfairdeal.com or (+971) 2 444 79 79
+                    <h5 style={{ color: 'black'}}>
+                    wael@carfairdeal.com or (+971) 2 444 79 79
+                    </h5>
+                    <h5 style={{ color: 'black'}}>
+                      Find us at <a style={{ color: 'orange'}} href='https://www.google.com/maps/place/car+fair+deal/@24.4360023,54.4169404,15z/data=!4m2!3m1!1s0x0:0xc692b58d9a7154f7?sa=X&ved=2ahUKEwjuppHj7MT8AhWE_bsIHYyHAQoQ_BJ6BAhsEAg'>our location</a>
                     </h5>
                 <Container style={{margin: "10px"}} >
-                    <h5 style={{textAlign: "center", marginBottom: "5px"}}>
+                    <h5 style={{textAlign: "center", marginBottom: "5px", color: 'black'}}>
                         Send us a message
                     </h5>
                     <TextField style={style01}
@@ -131,7 +139,7 @@ export default function ContactUs() {
                         onChange={formik.handleChange}
                     >
                     </TextField>
-                    <Button style={{backgroundColor: 'orange'}} variant="contained" type="submit" size='small'>SUBMIT</Button>
+                    <Button style={{backgroundColor: '#ff8b3d'}} variant="contained" type="submit" size='small'>SUBMIT</Button>
                 </Container>
           
                 </Grid>

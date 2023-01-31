@@ -11,10 +11,12 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import CarSale from './pages/CarSale';
 import CarListing from './pages/CarListings';
+import AuctionPage from './pages/AuctionPage';
+import MyListings from './pages/MyListings';
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
   },
 });
 
@@ -23,7 +25,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
     <Router>
-    <Routes>
+    <Routes style={{minHeight: '80vh'}}>
       <Route exact path='/' element={<Homepage/>}/>
       <Route exact path='/car-valuation' element={<Evaluation/>}/>
       <Route exact path='/about-us' element={<AboutUs/>}/>
@@ -32,6 +34,8 @@ function App() {
       <Route exact path='/auctions' element={<Auctions/>} />
       <Route exact path='/car-sale' element={<CarSale/>} />
       <Route exact path='/car-listings' element={<CarListing/>} />
+      <Route exact path='/auctions/:id' element={<AuctionPage/>} />
+      <Route exact path='/my-listings' element={<MyListings />} />
     </Routes>
     </Router>
     </ThemeProvider>
