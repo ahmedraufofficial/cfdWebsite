@@ -12,7 +12,7 @@ const Auctions = () => {
   const [auctions, setAuctions] = useState([])
 
   const fetchAuctions = () => {
-    fetch(`http://localhost:5000/auctions`)
+    fetch(`http://backend.carfairdeal.com/auctions`)
       .then(response => {
         return response.json()
       })

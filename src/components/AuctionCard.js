@@ -36,7 +36,7 @@ const AuctionCard = ({data}) => {
     const [bid, setBid] = useState("");
     
     const getAuction = async () => {
-        fetch(`http://localhost:5000/auction/${data?._id}`)
+        fetch(`http://backend.carfairdeal.com/auction/${data?._id}`)
         .then(response => {
             return response.json()
         })
@@ -186,7 +186,7 @@ const AuctionCard = ({data}) => {
       <CardMedia
       component="img"
       sx={{ width: 151 }}
-      image={"http://localhost:5000/images/"+ image}
+      image={"http://backend.carfairdeal.com/images/"+ image}
       alt="Live from space album cover"
     />
     

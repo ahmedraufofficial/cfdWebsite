@@ -86,7 +86,7 @@ export default function ListingCard({data, type}) {
         onSubmit: (x) => {
           async function add(x) {
             
-              const response = await fetch(`http://localhost:5000/add/inquiry`, {
+              const response = await fetch(`http://backend.carfairdeal.com/add/inquiry`, {
                   method: 'POST',
                   headers: {'Content-Type': 'application/json'},
                   body: JSON.stringify(x)
@@ -145,7 +145,7 @@ export default function ListingCard({data, type}) {
                 Are you sure you want to delete this listing?
                 </Typography>
                 <Button onClick={() => {
-                    fetch(`http://localhost:5000/listings/${data._id}`, {
+                    fetch(`http://backend.carfairdeal.com/listings/${data._id}`, {
                         method: 'DELETE',
                     }).then((res) => {
                         navigate(0)   

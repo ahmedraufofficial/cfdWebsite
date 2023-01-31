@@ -270,7 +270,7 @@ export default function Evaluation() {
         },
         onSubmit: (values) => {
           async function add(x) {
-              const response = await fetch(`http://localhost:5000/add/evaluation`, {
+              const response = await fetch(`http://backend.carfairdeal.com/add/evaluation`, {
                   method: 'POST',
                   headers: {'Content-Type': 'application/json'},
                   body: JSON.stringify({x: x})
@@ -281,7 +281,7 @@ export default function Evaluation() {
           }
 
           async function add_appointment(x) {
-            const response = await fetch(`http://localhost:5000/add/appointment`, {
+            const response = await fetch(`http://backend.carfairdeal.com/add/appointment`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({x: x})
@@ -387,7 +387,7 @@ export default function Evaluation() {
 
     const fetchEstimate = (make, model, year, specs) => {
       if (specs) {
-        fetch(`http://localhost:5000/dbzestimate/${make}/${model}/${year}/${specs.toLowerCase()}`)
+        fetch(`http://backend.carfairdeal.com/dbzestimate/${make}/${model}/${year}/${specs.toLowerCase()}`)
         .then(response => {
           return response.json()
         })
@@ -396,7 +396,7 @@ export default function Evaluation() {
             var price = data.estimate
             setResult(parseInt(price));
           } else {
-            fetch(`http://localhost:5000/estimate/${make}/${model}/${year}`)
+            fetch(`http://backend.carfairdeal.com/estimate/${make}/${model}/${year}`)
             .then(response => {
               return response.json()
             })
@@ -441,7 +441,7 @@ export default function Evaluation() {
           }
         }))
       } else {
-        fetch(`http://localhost:5000/trim/${make}/${model}/${year}`)
+        fetch(`http://backend.carfairdeal.com/trim/${make}/${model}/${year}`)
         .then(response => {
           return response.json()
         })

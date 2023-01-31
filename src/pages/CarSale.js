@@ -102,7 +102,7 @@ export default function CarSale() {
         },
         onSubmit: (values, {resetForm}) => {
           async function add(values) {
-              const response = await fetch(`http://localhost:5000/add/listing`, {
+              const response = await fetch(`http://backend.carfairdeal.com/add/listing`, {
                   method: 'POST',
                   headers: {'Content-Type': 'application/json'},
                   body: JSON.stringify(values)

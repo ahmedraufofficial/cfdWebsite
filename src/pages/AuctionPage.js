@@ -33,7 +33,7 @@ const AuctionPage = () => {
 
 
   const fetchAuction = () => {
-    fetch(`http://localhost:5000/auction/${location.pathname.split("/")[2]}`)
+    fetch(`http://backend.carfairdeal.com/auction/${location.pathname.split("/")[2]}`)
       .then(response => {
         return response.json()
       })
@@ -45,7 +45,7 @@ const AuctionPage = () => {
     const {userInfo} = useContext(AuthContext);
 
     const fetchData = () => {
-        fetch(`http://localhost:5000/inspection/${auction?.Vehicle_Id}`)
+        fetch(`http://backend.carfairdeal.com/inspection/${auction?.Vehicle_Id}`)
         .then(response => {
           return response.json()
         })
@@ -95,7 +95,7 @@ const AuctionPage = () => {
         {vehicle && <Carousel  cellPadding={ 5 }>
           {
             vehicle.Images.map((x) => {
-              return <img src={`http://localhost:5000/images/${x}`} />
+              return <img src={`http://backend.carfairdeal.com/images/${x}`} />
             })
           }
         </Carousel>}

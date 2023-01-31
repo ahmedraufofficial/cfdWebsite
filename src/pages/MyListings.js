@@ -24,7 +24,7 @@ export default function MyListings() {
 
 
   const fetchData = () => {
-    fetch(`http://localhost:5000/listings/all/${userInfo?.email}`)
+    fetch(`http://backend.carfairdeal.com/listings/all/${userInfo?.email}`)
       .then(response => {
         return response.json()
       })

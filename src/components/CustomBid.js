@@ -6,7 +6,7 @@ async function CustomBid(auction, setEndTime, bid, setAuction, username, title) 
     const newBid = auction?.Bids;
 
     newBid.push(bidDetails)
-    const response = await fetch(`http://localhost:5000/edit/auction/${auction._id}`, {
+    const response = await fetch(`http://backend.carfairdeal.com/edit/auction/${auction._id}`, {
                                     method: 'PUT',
                                     headers: {'Content-Type': 'application/json'},
                                     body: JSON.stringify({

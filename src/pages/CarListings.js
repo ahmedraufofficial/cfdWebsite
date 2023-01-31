@@ -20,7 +20,7 @@ export default function CarListing() {
   const [cars, setCars] = useState([])
 
   const fetchData = () => {
-    fetch(`http://localhost:5000/listings`)
+    fetch(`http://backend.carfairdeal.com/listings`)
       .then(response => {
         return response.json()
       })

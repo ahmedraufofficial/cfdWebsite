@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
     const register = (email, password, number, username) => {
         setIsLoading(true);
-        fetch('http://localhost:5000/register', {
+        fetch('http://backend.carfairdeal.com/register', {
             method: "POST",
             body: JSON.stringify({
               email,
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = (email, password) => {
         console.log("HERE")
-        fetch('http://localhost:5000/login', {
+        fetch('http://backend.carfairdeal.com/login', {
             method: "POST",
             body: JSON.stringify({
                 email: email,
